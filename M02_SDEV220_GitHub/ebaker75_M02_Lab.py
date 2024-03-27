@@ -5,8 +5,8 @@ This app will ask for a student's name and check if they made the Dean's List ( 
 or if they made the Honor Roll (GPA >= 3.25).
 """
 
-lName = input("Enter student's last name or ZZZZ to quit: ") #initialize flag (last name as string)
-while lName != "ZZZZ":
+lName = input("Enter student's last name or ZZZ to quit: ") #initialize flag (last name as string)
+while lName != "ZZZ":
 	fName = input("Enter student's first name: ") #first name as string
 	gpa = float(input("Enter student's GPA: ")) #GPA as float
 	if gpa >= 3.5:
@@ -15,6 +15,6 @@ while lName != "ZZZZ":
 		print(f"{fName} {lName} made Honor Roll!")
 	else:
 		print(f"{fName} {lName} is not qualified for Honor Roll or Den's List.")
-	lName = input("Enter next student's last name or ZZZZ to quit:")
+	lName = input("Enter next student's last name or ZZZ to quit:")
 else:
 	print("Program complete.") #inform user that program is finished
