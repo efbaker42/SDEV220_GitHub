@@ -14,7 +14,7 @@ while lName != "ZZZ":
 	elif gpa >= 3.25:
 		print(f"{fName} {lName} made Honor Roll!")
 	else:
-		print(f"{fName} {lName} is not qualified for Honor Roll or Den's List.")
+		print(f"{fName} {lName} is not qualified for Honor Roll or Dean's List.")
 	lName = input("Enter next student's last name or ZZZ to quit:")
 else:
 	print("Program complete.") #inform user that program is finished
