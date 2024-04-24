@@ -21,5 +21,28 @@ def generate_abilities():
 
 #ensure generate_abilities() works as expected:
 abilities_list = generate_abilities()
-print(abilities_list)
+print(f"abilities are: {abilities_list}")
 
+def update_mod(abilities):
+    """updates modifier for each ability score"""
+    modifiers = []
+    for abl in abilities:
+        mod = (abl - 10) // 2
+        modifiers.append(mod)
+    return modifiers
+
+#verify that update_mod(abilities) works as expected:
+modifier_list = update_mod(abilities_list)
+print(f"modifiers are: {modifier_list}")
+
+def ability_names():
+    ability_names = [Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma]
+    return ablitiy_names
+
+#Do I need to zip mods and abilities to ability names?
+
+def generate_passive_abilities():
+    """generates passive abilities; 10+ relevant mod"""
+    #our character sheet only shows passive perception
+
+def generate_skills():
