@@ -1,0 +1,2 @@
+Abilities dict:
+([Ability1: ([Stat: #],[Mod: #],[Passive: #])],[Ability2: ([Stat: #],[Mod: #],[Passive: #])],etc.)
