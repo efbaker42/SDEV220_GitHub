@@ -60,3 +60,7 @@ def delete_book(id):
     db.session.delete(book)
     db.session.commit()
     return{"message":"Entry deleted."}
+
+if __name__ == '__main__':
+    app.run(host = '0.0.0.0')
+    
