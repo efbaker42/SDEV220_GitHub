@@ -19,35 +19,6 @@ def generate_abilities():
         abilities.append(Rolls)
     return abilities
 
-<<<<<<< Updated upstream
-#ensure generate_abilities() works as expected:
-abilities_list = generate_abilities()
-print(f"abilities are: {abilities_list}")
-
-def update_mod(abilities):
-    """updates modifier for each ability score"""
-    modifiers = []
-    for abl in abilities:
-        mod = (abl - 10) // 2
-        modifiers.append(mod)
-    return modifiers
-
-#verify that update_mod(abilities) works as expected:
-modifier_list = update_mod(abilities_list)
-print(f"modifiers are: {modifier_list}")
-
-def ability_names():
-    ability_names = [Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma]
-    return ablitiy_names
-
-#Do I need to zip mods and abilities to ability names?
-
-def generate_passive_abilities():
-    """generates passive abilities; 10+ relevant mod"""
-    #our character sheet only shows passive perception
-
-def generate_skills():
-=======
 def update_mod(abilities):
     """updates modifier for each ability score"""
     modifiers = []
@@ -89,8 +60,35 @@ def proficiency(level):
 def gen_skills(proficiency,modifiers):
     """Rolls skills checks and adds modifier and passive abilities"""
 
+def roll_dice():
+    """Rolls dice of user's choosing"""
+    import random
+    numDice = print(int(input("How many dice do you want to roll? ")))
+    sideDice = print(int(input("Which dice do you want to roll? Choose from 4, 6, 8, 10, 20, or 100: ")))
+    validDice = [4,6,8,10,20,100]
+    finalRoll = 0
+    if sideDice not in validDice:
+        sideDice = print(int(input("Invalid choice. Choose from 4, 6, 8, 10, 20, or 100: ")))
+    while numDice != 0:
+        finalRoll = finalRoll + random.randint(1,sideDice)
+        numDice -= 1
+    return finalRoll
 
+#problem: skill may be overridden by user as it comes from a number of variables in addition to proficiency
+#even when proficiency is factored in, users typically write the skill score to include proficiency, so it is not added as a separate step after rolling
+#for above reasons, commented out below version; may discard later
 
+"""def roll_skill(proficiency):
+    """Rolls skill check"""
+    skill = print(int(input("Enter skill score: "))) #this will come from the db later
+    isProf = print(input("Are you proficient (Y/N)?")) #skill may be modified by user later
+    if isProf == "N":
+        proficiency = 0
+    skillRoll = skill + proficiency + random.randint(1,20)
+    return skillRoll"""
 
-    
->>>>>>> Stashed changes
+def roll_skill():
+    """Rolls skill check using user's entries"""
+    skill = print(int(input("Enter skill score: "))) #this will come from the db later
+    skillRoll = skill + proficiency + random.randint(1,20)
+    return skillRoll
