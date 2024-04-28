@@ -79,8 +79,8 @@ def roll_dice():
 #for above reasons, commented out below version; may discard later
 
 """def roll_skill(proficiency):
-    """Rolls skill check"""
-    skill = print(int(input("Enter skill score: "))) #this will come from the db later
+    """#Rolls skill check"""
+    """skill = print(int(input("Enter skill score: "))) #this will come from the db later
     isProf = print(input("Are you proficient (Y/N)?")) #skill may be modified by user later
     if isProf == "N":
         proficiency = 0
