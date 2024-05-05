@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 #documentation states that all fields are editable by default
+#keeping as a rough draft; may discard later
 
 class Abilities(models.Model):
     ablity = models.CharField(primary_key=True,max_length=12)
