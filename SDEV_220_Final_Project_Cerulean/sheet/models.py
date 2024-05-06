@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.db.models import F
 import random
 import math #previously imported them within the func so it would work right, but it would be best to import these once if possible
 #documentation states that all fields are editable by default
@@ -15,10 +16,10 @@ class Player_Entry(models.Model):
     armor_class = models.SmallIntegerField()
     initiative = models.SmallIntegerField()
     hit_points = models.SmallIntegerField()
-    conditions = models.TextField(null=True)
+    conditions = models.TextField(blank=True,null=True)
     inspiration = models.BooleanField()
     inventory = models.TextField()
-    spells = models.TextField(null=True)
+    spells = models.TextField(blank=True,null=True)
     speed = models.TextField()
     defenses = models.TextField()
     features = models.TextField()
@@ -26,8 +27,8 @@ class Player_Entry(models.Model):
     proficiencies = models.TextField()
     proficiency_value = models.SmallIntegerField() #should this be generated instead? or will it generate every time the sheet is pulled up, overriding the player's settings?
     languages = models.TextField()
-    description = models.TextField(null=True)
-    notes = models.TextField(null=True)
+    description = models.TextField(blank=True,null=True)
+    notes = models.TextField(blank=True,null=True)
 
     def proficiency(level):
         """calculates proficiency"""
@@ -36,13 +37,15 @@ class Player_Entry(models.Model):
         return proficiency_value
 
 class Abilities(models.Model):
-    """Define Abilities table"""
-    ability = models.CharField(primary_key=True,max_length=12)
-    score = models.SmallIntegerField()
-    modifier = models.SmallIntegerField()
-    passive_ability = models.SmallIntegerField()
-
-    def generate_abilities(): #unsure how to populate each rowS
+    """Define Abilities table; explicitly calculates each ability"""
+    Strength_score = models.SmallIntegerField()
+    Strength_modifier = models.GeneratedField(expression=F("Strength_score")-10//2,output_field=models.SmallIntegerField(),db_persist=True)
+    Passive_strength = models.GeneratedField(expression=F("Strength_modifier")+10,output_field=models.SmallIntegerField(),db_persist=True)
+    
+    def __str__(self):
+        return (f"Score: {self.Strength_score}  mod:{self.Strength_modifier} passive: {self.Passive_strength}")
+    
+    def generate_abilities(): #unsure how to populate each row
         """Generate stats for character abilities"""
         #import random
         abl = 0 #holds number of abilities
@@ -116,7 +119,7 @@ class Sheet(Skills,Abilities):
             numDice -= 1
         return finalRoll
     
-    def roll_skill():
+    def roll_skill_check():
         """Rolls skill check using user's entries"""
         skill = print(int(input("Enter skill score: "))) #this will come from the db later
         skillRoll = skill + proficiency + random.randint(1,20)
