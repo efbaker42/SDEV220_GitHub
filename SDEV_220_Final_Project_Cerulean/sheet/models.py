@@ -103,26 +103,34 @@ class Abilities(models.Model):
             abilities.append(Rolls)
         return abilities
     
-    def update_mod(abilities): #unsure how to populate each row
-        """updates modifier for each ability score"""
-        modifiers = []
-        for abl in abilities:
-            mod = (abl - 10) // 2
-            modifiers.append(mod)
-        return modifiers
+    #removed update_mod function because it's accounted for in @properties function
     
-    def gen_passive_abilities(modifiers): #unsure how to populate each row
-        """adds 10 to each modifier to create passive ability score"""
-        passive_abilities = []
-        for mod in modifiers:
-            pasAbl = mod + 10
-            passive_abilities.append(pasAbl)
-        return passive_abilities
+    #removed gen_passive_abilities function because it's accounted for in @properties function
 
 #should inherit level from Player_Entry; don't want to enter this more than once to reduce errors
-class Skills(Player_Entry):
+class Skills(Abilities,Player_Entry):
     """Define Skills table"""
-    skill = models.CharField(primary_key=True,max_length=17)
+    #acrobatics(dex)
+    acrobatics_skill = models.SmallIntegerField()
+    #animal handling(wis)
+    #animal_handling_skill = models.SmallIntegerField()
+    #arcana(int)
+    #arcana_skill = models.SmallIntegerField
+    #athletics(str)
+    #deception(char)
+    #history(int)
+    #insight(wis)
+    #intimidation(cha)
+    #medicine(wis)
+    #nature(int)
+    #perception(wis)
+    #performance(cha)
+    #persuasion(cha)
+    #religion(int)
+    #sleight of hand(dex)
+    #stealth(dex)
+    #survival(wis)
+    skill = models.CharField(max_length=17)
     base_score = models.SmallIntegerField()
     prof = models.BooleanField() #either a skill has proficiency or it doesn't; proficiency is calculated in the Player_Entry, because it needs its own space as it is sometimes used for other rolls
     abl = models.SmallIntegerField()
@@ -137,7 +145,7 @@ class Skills(Player_Entry):
             skill_score = self.base_score + Player_Entry.proficiency_value + random.randint(1,20)
         return skill_score
 
-class Sheet(Skills,Abilities):
+class Sheet(Skills):
     """Takes all the data from the other classes to produce a sheet"""
     last_saved = models.DateTimeField(blank=True, null=True)
 
