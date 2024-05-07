@@ -167,3 +167,6 @@ class Sheet(Skills,Abilities):
         skill = print(int(input("Enter skill score: "))) #this will come from the db later
         skillRoll = skill + proficiency + random.randint(1,20)
         return skillRoll
+    
+class SheetForm():
+    print("Test")
