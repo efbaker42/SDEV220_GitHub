@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def character_list(request):
+    return render(request, 'sheet/character_list.html', {}) #requests character list template
