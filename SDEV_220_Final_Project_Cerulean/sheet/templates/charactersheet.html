@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Character Sheet</title>
+  </head>
+  <body>
+    <form action="{% url 'character_sheet' %}" method="post">
+      {% csrf_token %}
+      <!--either render fields with a loop or {{form.as_p}}-->
+      {% for field in form %}
+      <div>
+        {{field.label_tag}} <br />
+        {{field}}
+      </div>
+      {% endfor %}
+      <button type="submit">Save</button>
+      <button type="button" onClick="testFunction()">Test Me</button>
+    </form>
+
+    <script>
+      function testFunction() {
+        //get the element by id
+        strength_box = document.getElementById("id_strength_score");
+        //get the value from the input box
+        strength_value = strength_box.value;
+        //output the value * 2 (inspect the web page to see the console.)
+        console.log(strength_value * 2);
+      }
+    </script>
+  </body>
+</html>

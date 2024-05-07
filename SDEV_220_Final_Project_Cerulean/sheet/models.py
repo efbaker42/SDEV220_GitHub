@@ -3,6 +3,10 @@ from django.db import models
 from django.utils import timezone
 from django.db.models import F
 from django.db.models import Value
+
+#import model form 
+from django.forms import ModelForm
+
 import random
 import math #previously imported them within the func so it would work right, but it would be best to import these once if possible
 #documentation states that all fields are editable by default
@@ -168,5 +172,10 @@ class Sheet(Skills,Abilities):
         skillRoll = skill + proficiency + random.randint(1,20)
         return skillRoll
     
-class SheetForm():
-    print("Test")
+#Create the class for the form.    
+class SheetForm(ModelForm):
+    class Meta:
+        model = Sheet
+        #required to ether use fields or exluce (might be easier just to exlude this field than list all)
+        exclude = ('last_saved',)
+    
