@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.db.models import F
+from django.db.models import Value
 import random
 import math #previously imported them within the func so it would work right, but it would be best to import these once if possible
 #documentation states that all fields are editable by default
@@ -39,7 +40,7 @@ class Player_Entry(models.Model):
 class Abilities(models.Model):
     """Define Abilities table; explicitly calculates each ability"""
     Strength_score = models.SmallIntegerField()
-    Strength_modifier = models.GeneratedField(expression=F("Strength_score")-10//2,output_field=models.SmallIntegerField(),db_persist=True)
+    Strength_modifier = models.GeneratedField(expression=(Value("Strength_score")-10)//2,output_field=models.SmallIntegerField(),db_persist=True)
     Passive_strength = models.GeneratedField(expression=F("Strength_modifier")+10,output_field=models.SmallIntegerField(),db_persist=True)
     
     def __str__(self):
@@ -85,7 +86,7 @@ class Skills(Player_Entry):
     abl = models.SmallIntegerField()
     skill_score = models.SmallIntegerField()
 
-    def roll_base_skill(prof,skill_score): #unsure how to populate each row
+    def roll_base_skill(self,prof,skill_score): #unsure how to populate each row
         """Rolls base skill, which can be overridden by player later"""
         #import random
         if prof == False:
