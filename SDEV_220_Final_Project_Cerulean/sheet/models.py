@@ -82,9 +82,11 @@ class Abilities(models.Model):
     def passive_charisma(self):
         return(self.charisma_modifier+10)
     
-    
+    #test Abilities in python shell
     def __str__(self):
-        return (f"Score: {self.strength_score}  mod:{self.strength_modifier} passive: {self.passive_strength}")
+        return (
+            f"Strength score: {self.strength_score}  mod:{self.strength_modifier} passive: {self.passive_strength}\nDexterity score: {self.dexterity_score}  mod:{self.dexterity_modifier} passive: {self.passive_dexterity}\nConstitution score: {self.constitution_score}  mod:{self.constitution_modifier} passive: {self.passive_constitution}\nIntelligence score: {self.intelligence_score}  mod:{self.intelligence_modifier} passive: {self.passive_intelligence}\nWisdom score: {self.wisdom_score}  mod:{self.wisdom_modifier} passive: {self.passive_wisdom}\nCharisma score: {self.charisma_score}  mod:{self.charisma_modifier} passive: {self.passive_charisma}"
+            )
     
     def generate_abilities(): #unsure how to populate each row
         """Generate stats for character abilities"""
