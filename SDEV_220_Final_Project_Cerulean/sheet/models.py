@@ -39,12 +39,52 @@ class Player_Entry(models.Model):
 
 class Abilities(models.Model):
     """Define Abilities table; explicitly calculates each ability"""
-    Strength_score = models.SmallIntegerField()
-    Strength_modifier = models.GeneratedField(expression=(Value("Strength_score")-10)//2,output_field=models.SmallIntegerField(),db_persist=True)
-    Passive_strength = models.GeneratedField(expression=F("Strength_modifier")+10,output_field=models.SmallIntegerField(),db_persist=True)
+    strength_score = models.SmallIntegerField()
+    @property
+    def strength_modifier(self):
+        return((self.strength_score-10)//2)
+    @property
+    def passive_strength(self):
+        return(self.strength_modifier+10)
+    dexterity_score = models.SmallIntegerField()
+    @property
+    def dexterity_modifier(self):
+        return((self.dexterity_score-10)//2)
+    @property
+    def passive_dexterity(self):
+        return(self.dexterity_modifier+10)
+    constitution_score = models.SmallIntegerField()
+    @property
+    def constitution_modifier(self):
+        return((self.constitution_score-10)//2)
+    @property
+    def passive_constitution(self):
+        return(self.constitution_modifier+10)
+    intelligence_score = models.SmallIntegerField()
+    @property
+    def intelligence_modifier(self):
+        return((self.intelligence_score-10)//2)
+    @property
+    def passive_intelligence(self):
+        return(self.intelligence_modifier+10)
+    wisdom_score = models.SmallIntegerField()
+    @property
+    def wisdom_modifier(self):
+        return((self.wisdom_score-10)//2)
+    @property
+    def passive_wisdom(self):
+        return(self.wisdom_modifier+10)
+    charisma_score = models.SmallIntegerField()
+    @property
+    def charisma_modifier(self):
+        return((self.charisma_score-10)//2)
+    @property
+    def passive_charisma(self):
+        return(self.charisma_modifier+10)
+    
     
     def __str__(self):
-        return (f"Score: {self.Strength_score}  mod:{self.Strength_modifier} passive: {self.Passive_strength}")
+        return (f"Score: {self.strength_score}  mod:{self.strength_modifier} passive: {self.passive_strength}")
     
     def generate_abilities(): #unsure how to populate each row
         """Generate stats for character abilities"""
