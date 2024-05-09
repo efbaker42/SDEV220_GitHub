@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>D&D Character Sheet</title>
+    </head>
+    <body>
+        <header class="page-header">
+            <div class="container">
+                <a href="{% url 'sheet_new' %}" class="top-menu">
+                    {% include './icons/file-earmark-plus.svg' %}
+                </a>            
+                <h1><a href="/">D&D Character Sheet</a></h1>
+            </div>
+        </header>
+        <main class="content container">
+            <div class="row">
+                <div class="col">
+                    {% for sheet in sheets %}
+                    <article class="sheet">
+                        <h2><a href="">{{sheet.character_name}}</a></h2>
+                            <h3>level</h3>
+                            <p>{{level}}</p>
+                            <h3>Armor Class</h3>
+                            <p>{{armor_class}}</p>
+
+                            <br>
+                            <h3>Abilities</h3>
+                            <p>{{strength_score}}</p>
+                            <p>{{dexterity_score}}</p>
+                            <p>{{constitution_score}}</p>
+                            <p>{{intelligence_score}}</p>
+                            <p>{{wisdom_score}}</p>
+                            <p>{{charisma_score}}</p>
+                            <br>
+                            <h3>Skills</h3>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
