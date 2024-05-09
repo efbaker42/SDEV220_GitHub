@@ -5,9 +5,14 @@
     </head>
     <body>
         <!--Evan, I tried to explicitly pull in each field from the Sheets model, thought there must be a better way to do this, and looked at your HTML file-->
-        <form action="{% url 'sheet/new/' %}" method="post">
+        <form action="{% url 'character_sheet' %}" method="post">
             {% csrf_token %}
-            {{% form.as_p %}}
+            {% for field in form %}
+            <div>
+                {{field.label_tag}} <br />
+                {{field}}
+            </div>
+            {% endfor %}
             <button type="submit" class="save btn btn-secondary">Save</button>
         </form>
     </body>
