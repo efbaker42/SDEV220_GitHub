@@ -1,13 +1,15 @@
 {% extends 'blog/base.html' %}
-
-{% block content %}
-    {% for post in posts %}
-        <article class="post">
-            <time class="date">
-                {{ sheet.last_saved }}
-            </time>
-            <h2><a href="{% url 'sheet_list' id=sheet.id %}">{{ sheet.character_name }}</a></h2>
-            <p>{{ sheet.character_name|linebreaksbr }}</p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>D&D Character Sheet</title>
+    </head>
+    <body>
+    {% for sheet in sheets %}
+        <article>
+            <time>saved: {{ sheet.last_saved }}</time>
+            <h2><a href=" ">{{ sheet.character_name }}</a></h2>
         </article>
     {% endfor %}
-{% endblock %}
+    </body>
+</html>

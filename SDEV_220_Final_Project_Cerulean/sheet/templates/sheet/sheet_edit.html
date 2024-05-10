@@ -1,19 +1,17 @@
-<!-- should display saved character sheet-->
 <!DOCTYPE html>
 <html>
     <head>
         <title>D&D Character Sheet</title>
     </head>
     <body>
-        <form action="{% url 'sheet_detail' %}" method="get">
-            {% if sheet.character_name %}
+        <!--Evan, I tried to explicitly pull in each field from the Sheets model, thought there must be a better way to do this, and looked at your HTML file-->
+        <form method="POST" class="sheet-form">{% csrf_token %}
             {% for field in form %}
             <div>
                 {{field.label_tag}} <br />
                 {{field}}
             </div>
             {% endfor %}
-            {% endif %}
             <button type="submit" class="save btn btn-secondary">Save</button>
         </form>
     </body>
