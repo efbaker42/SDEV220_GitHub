@@ -17,7 +17,7 @@ def character_sheet_new(request):
         form = SheetForm(request.POST)
         if form.is_valid():
             sheet = form.save(commit=False)
-            #sheet.author = request.user #there is no author field required in my form
+            #sheet.author = request.user #there is no author field required in my form, which may impact whether the form is valid
             sheet.last_saved = timezone.now()
             sheet.save()
             return redirect('character_sheet') #this is a stand-in because sheet_detail doesn't work yet
