@@ -6,7 +6,7 @@
             <time class="date">
                 {{ sheet.last_saved }}
             </time>
-            <h2><a href="{% url 'sheet_list' pk=post.pk %}">{{ sheet.character_name }}</a></h2>
+            <h2><a href="{% url 'sheet_list' id=sheet.id %}">{{ sheet.character_name }}</a></h2>
             <p>{{ sheet.character_name|linebreaksbr }}</p>
         </article>
     {% endfor %}

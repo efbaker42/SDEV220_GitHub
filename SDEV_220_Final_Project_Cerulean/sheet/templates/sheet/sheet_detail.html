@@ -6,7 +6,7 @@
     </head>
     <body>
         <form action="{% url 'sheet_detail' %}" method="get">
-            {% if sheet.pk %}
+            {% if sheet.id %}
             {% for field in form %}
             <div>
                 {{field.label_tag}} <br />
