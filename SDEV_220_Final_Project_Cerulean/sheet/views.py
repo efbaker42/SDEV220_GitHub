@@ -15,11 +15,11 @@ def character_sheet(request):
 def character_sheet_new(request):
     if request.method == "GET":
         form = SheetForm(request.GET)
-        return render(request, 'sheet/character_sheet.html', {'form': form})
+        return render(request, 'sheet/sheet_edit.html', {'form': form})
     elif request.method == "POST":
         form = SheetForm(request.POST)
         if form.is_valid():
-            sheet = form.save() #removed commit=False to see if that would help
+            sheet = form.save(commit=False)
             #I excluded sheet.author because there is no author in the model, and it might interpret the form as invalid
             sheet.last_saved = timezone.now()
             sheet.save()
@@ -45,7 +45,14 @@ def character_sheet_new(request):
 
 def sheet_detail(request,pk):
     sheet = get_object_or_404(Sheet, pk=pk)
+    form = SheetForm(request.GET)
     return render(request, 'sheet/sheet_detail.html', {'form': form})
+
+def error_message(request):
+    return render(request, 'sheet/error_message.html', {})
+
+def success_message(request):
+    return render(request, 'sheet/success_message.html', {})
 
 #def sheet_list(request):
 #    sheets = Sheet.objects.filter(last_saved__lte=timezone.now()).order_by('character_name')

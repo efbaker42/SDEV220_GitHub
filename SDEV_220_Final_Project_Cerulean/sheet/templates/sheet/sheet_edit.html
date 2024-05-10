@@ -5,7 +5,7 @@
     </head>
     <body>
         <!--Evan, I tried to explicitly pull in each field from the Sheets model, thought there must be a better way to do this, and looked at your HTML file-->
-        <form method="POST" class="sheet-form">{% csrf_token %}
+        <form action = "sheet_detail" method="post">{% csrf_token %}
             {% for field in form %}
             <div>
                 {{field.label_tag}} <br />
