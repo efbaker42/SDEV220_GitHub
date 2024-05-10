@@ -6,13 +6,13 @@
     </head>
     <body>
         <form action="{% url 'sheet_detail' %}" method="get">
-            {% if sheet.character_name %}
-            {% for field in form %}
-            <div>
-                {{field.label_tag}} <br />
-                {{field}}
-            </div>
-            {% endfor %}
+            {% if sheet.pk %}
+                {% for field in form %}
+                    <div>
+                        {{field.label_tag}} <br />
+                        {{field}}
+                    </div>
+                {% endfor %}
             {% endif %}
             <button type="submit" class="save btn btn-secondary">Save</button>
         </form>

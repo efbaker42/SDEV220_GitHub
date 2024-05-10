@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Sheet
 from .forms import SheetForm
 from django.contrib import messages
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 
 #may change later; still need way to list character sheets and edit sheets
@@ -43,7 +43,7 @@ def character_sheet_new(request):
 #            return render(request, 'sheet/character_sheet.html', {'form': form}) #user will get same screen whether the sheet saves or not"""
 
 def sheet_detail(request,pk):
-    form = SheetForm()
+    sheet = get_object_or_404(Sheet, pk=pk)
     return render(request, 'sheet/sheet_detail.html', {'form': form})
 
 #def sheet_list(request):
