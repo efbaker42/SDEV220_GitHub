@@ -5,7 +5,7 @@
         <title>D&D Character Sheet</title>
     </head>
     <body>
-        <form action="{% url 'sheet_detail' %}" method="get">
+        <form action = "{% url 'sheet_detail' %}" method="get">
             {% if sheet.pk %}
                 {% for field in form %}
                     <div>
