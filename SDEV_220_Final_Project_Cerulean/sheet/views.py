@@ -43,9 +43,9 @@ def character_sheet_new(request):
 #            form = SheetForm()
 #            return render(request, 'sheet/character_sheet.html', {'form': form}) #user will get same screen whether the sheet saves or not"""
 
-def sheet_detail(request,id):
-    #sheet = get_object_or_404(Sheet, pk=pk)
-    form = get_object_or_404(Sheet, id=id)
+def sheet_detail(request,pk):
+    form = get_object_or_404(Sheet, pk=pk)
+    #form = SheetForm(request.GET)
     return render(request, 'sheet/sheet_detail.html', {'form': form})
 
 def error_message(request):
