@@ -24,6 +24,6 @@ def character_sheet_new(request):
         form = SheetForm()
     return render(request, 'sheet/character_sheet.html', {'form': form})
 
-"""def sheet_detail(request):
+def sheet_detail(request,pk):
     form = SheetForm()
-    return render(request, 'sheet/sheet_detail/', {'form': form})"""
+    return render(request, 'sheet/sheet_detail/', {'form': form})
