@@ -111,7 +111,7 @@ class Abilities(models.Model):
 class Skills(Abilities,Player_Entry):
     """Define Skills table"""
     #acrobatics(dex)
-    acrobatics_skill = models.SmallIntegerField()
+    skill_entry = models.TextField()
     #animal handling(wis)
     #animal_handling_skill = models.SmallIntegerField()
     #arcana(int)
@@ -130,11 +130,6 @@ class Skills(Abilities,Player_Entry):
     #sleight of hand(dex)
     #stealth(dex)
     #survival(wis)
-    skill = models.CharField(max_length=17)
-    base_score = models.SmallIntegerField()
-    prof = models.BooleanField() #either a skill has proficiency or it doesn't; proficiency is calculated in the Player_Entry, because it needs its own space as it is sometimes used for other rolls
-    abl = models.SmallIntegerField()
-    skill_score = models.SmallIntegerField()
 
     def roll_base_skill(self,prof,skill_score): #unsure how to populate each row
         """Rolls base skill, which can be overridden by player later"""
@@ -169,9 +164,3 @@ class Sheet(Skills):
             finalRoll = finalRoll + random.randint(1,sideDice)
             numDice -= 1
         return finalRoll
-    
-    def roll_skill_check():
-        """Rolls skill check using user's entries"""
-        skill = print(int(input("Enter skill score: "))) #this will come from the db later
-        skillRoll = skill + proficiency + random.randint(1,20)
-        return skillRoll

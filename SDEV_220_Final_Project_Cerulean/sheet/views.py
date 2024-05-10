@@ -19,10 +19,11 @@ def character_sheet_new(request):
     elif request.method == "POST":
         form = SheetForm(request.POST)
         if form.is_valid():
-            sheet = form.save(commit=False)
+            sheet = form.save() #removed commit=False to see if that would help
+            #I excluded sheet.author because there is no author in the model, and it might interpret the form as invalid
             sheet.last_saved = timezone.now()
             sheet.save()
-            return redirect('sheet_detail', pk=sheet.pk)
+            return redirect('sheet_detail', pk=sheet.pk) #the sheet_detail view/page has issues, so if it saves correctly, I should get an error message
         else:
             form = SheetForm()
         return render(request, 'sheet/sheet_edit.html', {'form': form})
