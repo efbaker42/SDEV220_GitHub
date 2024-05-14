@@ -12,7 +12,7 @@ def character_sheet(request):
     return render(request, 'sheet/character_sheet.html', {'form': form})
 
 #doesn't save yet; sheet_detail.html not fleshed out
-def character_sheet_new(request):
+def character_sheet_new(request): #include pk here when sheet_detail view works
     if request.method == "GET":
         form = SheetForm(request.GET)
         return render(request, 'sheet/sheet_edit.html', {'form': form})
@@ -23,7 +23,7 @@ def character_sheet_new(request):
             #I excluded sheet.author because there is no author in the model, and it might interpret the form as invalid
             sheet.last_saved = timezone.now()
             sheet.save()
-            return redirect('sheet_detail', pk=sheet.pk) #the sheet_detail view/page has issues, so if it saves correctly, I should get an error message
+            return redirect(request, 'sheet/sheet_edit.html', {'form': form}) #the sheet_detail view/page has issues, so if it saves correctly, I should get an error message
         else:
             form = SheetForm()
         return render(request, 'sheet/sheet_edit.html', {'form': form})
